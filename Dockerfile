@@ -1,32 +1,29 @@
 # Start from the official Debian base image
 FROM debian:bullseye
 
-# Installation of dependencies
+# Install dependencies
 RUN apt-get update -y && \
     apt-get install -y sudo unzip openjdk-17-jre-headless screen wget curl
 
-# Download and install PaperMC (you can update the URL to the version you prefer)
-RUN wget -O /minecraft_server.jar "https://api.papermc.io/v2/projects/paper/versions/1.18.2/builds/388/downloads/paper-1.18.2-388.jar"
-
-# Download Mojang EULA
-RUN wget -O /eula.txt "https://cdn.team-ic.dev/eula.txt"
-
-# Create a directory for the Minecraft server
+# Create the server directory
 RUN mkdir -p /minecraft
 
-# Move server files into the directory
-RUN mv /minecraft_server.jar /minecraft/server.jar
-RUN mv /eula.txt /minecraft/eula.txt
+# Copy your server files (including mods) to the Docker image
+COPY ./mods /minecraft/mods
+COPY ./config /minecraft/config
+COPY ./defaultconfigs /minecraft/defaultconfigs
+COPY ./server.properties /minecraft/server.properties
+COPY ./server-icon.png /minecraft/server-icon.png
+COPY ./start.sh /minecraft/start.sh
 
-# Set working directory to the Minecraft server
+# Set the working directory to the Minecraft server directory
 WORKDIR /minecraft
 
-# Expose the Minecraft server port
+# Ensure the start script is executable
+RUN chmod +x start.sh
+
+# Expose Minecraft server port
 EXPOSE 25565
 
-# Create a start script
-RUN echo '#!/bin/bash\njava -Xms1G -Xmx1G -jar server.jar nogui' > /start.sh
-RUN chmod +x /start.sh
-
-# Start the Minecraft server
-CMD ["/bin/bash", "/start.sh"]
+# Run the server
+CMD ["./start.sh"]

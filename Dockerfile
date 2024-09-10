@@ -12,7 +12,7 @@ RUN mkdir -p /minecraft
 COPY ./mods /minecraft/mods
 COPY ./config /minecraft/config
 COPY ./defaultconfigs /minecraft/defaultconfigs
-COPY ./server.properties /minecraft/server.properties
+# COPY ./server.properties /minecraft/server.properties
 COPY ./server-icon.png /minecraft/server-icon.png
 COPY ./variables.txt /minecraft/variables.txt
 COPY ./start.sh /minecraft/start.sh

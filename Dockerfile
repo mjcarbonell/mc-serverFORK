@@ -12,12 +12,17 @@ RUN mkdir -p /minecraft
 COPY ./mods /minecraft/mods
 COPY ./config /minecraft/config
 COPY ./defaultconfigs /minecraft/defaultconfigs
-# COPY ./server.properties /minecraft/server.properties
+COPY ./server.properties /minecraft/server.properties
 COPY ./server-icon.png /minecraft/server-icon.png
+COPY ./variables.txt /minecraft/variables.txt
 COPY ./start.sh /minecraft/start.sh
 
 # Set the working directory to the Minecraft server directory
 WORKDIR /minecraft
+
+# Download Fabric installer and install Fabric server
+RUN wget -O fabric-installer.jar https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar && \
+    java -jar fabric-installer.jar server -mcversion 1.20.1 -downloadMinecraft
 
 # Ensure the start script is executable
 RUN chmod +x start.sh

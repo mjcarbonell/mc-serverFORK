@@ -20,6 +20,9 @@ COPY ./start.sh /minecraft/start.sh
 # Set the working directory to the Minecraft server directory
 WORKDIR /minecraft
 
+# EULA
+RUN echo "eula=true" > /minecraft/eula.txt
+
 # Download Fabric installer and install Fabric server
 RUN wget -O fabric-installer.jar https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar && \
     java -jar fabric-installer.jar server -mcversion 1.20.1 -downloadMinecraft

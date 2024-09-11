@@ -7,10 +7,8 @@ WORKDIR /app
 COPY . .
 
 # Set the executable permissions for scripts
-RUN chmod +x Install.sh ServerStart.sh settings.sh
+RUN chmod +x start.sh
 
-# Install Forge server
-RUN ./Install.sh
 # EULA
 RUN echo "eula=true" > eula.txt
 # Expose the Minecraft server port

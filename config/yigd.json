@@ -81,6 +81,8 @@
     "useSoftBlockWhitelist": false,
     "useStrictBlockBlacklist": true,
     "replaceOldWhenClaimed": true,
+    "dropItemsIfDestroyed": false,
+    "notifyOwnerIfDestroyed": true,
     "persistentGraves": {
       "enabled": false,
       "showDeathDay": true,
@@ -136,7 +138,10 @@
     "enableTravelersBackpackCompat": true,
     "defaultTravelersBackpackDropRule": "PUT_IN_GRAVE",
     "enableTrinketsCompat": true,
-    "defaultTrinketsDropRule": "PUT_IN_GRAVE"
+    "defaultTrinketsDropRule": "PUT_IN_GRAVE",
+    "enableBeansBackpacksCompat": true,
+    "defaultBeansBackpacksDropRule": "PUT_IN_GRAVE",
+    "enableRespawnObelisksCompat": true
   },
   "commandConfig": {
     "mainCommand": "yigd",
@@ -179,18 +184,22 @@
       "rebindable": true,
       "required": true,
       "receiveOnRespawn": true,
+      "obtainableFromGui": false,
       "targeting": "PLAYER_GRAVE"
     },
     "deathScroll": {
       "enabled": false,
       "rebindable": false,
       "receiveOnRespawn": false,
-      "clickFunction": "VIEW_CONTENTS"
+      "clickFunction": "VIEW_CONTENTS",
+      "consumeOnUse": false
     },
     "graveCompass": {
       "receiveOnRespawn": false,
       "consumeOnUse": true,
-      "deleteWhenUnlinked": true
+      "deleteWhenUnlinked": true,
+      "cloneRecoveryCompassWithGUI": false,
+      "pointToClosest": "DISABLED"
     }
   }
 }

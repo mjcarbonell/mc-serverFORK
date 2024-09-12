@@ -94,6 +94,7 @@ downloadIfNotExist() {
     echo "false"
   fi
 }
+# IT WORKS
 add_operator() {
     echo "Creating a new ops.json file..."
     echo '[{"uuid":"3e88f0a2-dc1e-41ab-815d-1595cbe1d888", "name":"MAXMOOHAHA", "level":4, "bypassesPlayerLimit":false}]' > ops.json

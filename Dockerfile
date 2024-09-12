@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y curl
 
 COPY . .
 RUN chmod +x start.sh
-
+# test
 RUN echo "level-name=/WorldBackup/your_world_folder" > server.properties
 
 

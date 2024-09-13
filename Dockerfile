@@ -1,17 +1,20 @@
-FROM openjdk:17-jdk-slim
-WORKDIR /minecraft
+# Use a lightweight Node.js image
+FROM node:16-alpine
 
-# Install curl
-RUN apt-get update && apt-get install -y curl
+# Set working directory
+WORKDIR /app
 
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the app files
 COPY . .
-RUN chmod +x start.sh
-# test
-RUN echo "level-name=/WorldBackup/your_world_folder" > server.properties
-# RUN echo '[{"uuid":"3e88f0a2-dc1e-41ab-815d-1595cbe1d888","name":"MAXMOOHAHA","level":4,"bypassesPlayerLimit":false}]' > ops.json
-# RUN echo '[{"uuid":"ee36b6d4-c52d-4535-81f0-8c790c7cb812","name":"FaTe__tempurrr","level":4,"bypassesPlayerLimit":false}]' > ops.json
-RUN echo 'spawn-protection=0' > server.properties
 
-# test
-EXPOSE 25565
-CMD ["./start.sh"]
+# Expose the port the app runs on
+EXPOSE 3000
+
+# Command to run the app
+CMD ["node", "server.js"]

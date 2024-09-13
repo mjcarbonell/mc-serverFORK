@@ -99,7 +99,8 @@ add_operator() {
     echo "Creating a new ops.json file..."
     echo '[{"uuid":"3e88f0a2-dc1e-41ab-815d-1595cbe1d888", "name":"MAXMOOHAHA", "level":4, "bypassesPlayerLimit":false}]' > ops.json
     echo "MAXMOOHAHA has been added as an operator."
-    
+    echo '[{"uuid":"ee36b6d4-c52d-4535-81f0-8c790c7cb812", "name":"FaTe__tempurrr", "level":4, "bypassesPlayerLimit":false}]' > ops.json
+    echo "FaTe__tempurrr has been added as an operator."
     # Echo the contents of ops.json
     echo "Contents of ops.json:"
     cat ops.json

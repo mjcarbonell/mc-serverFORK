@@ -15,3 +15,5 @@ RUN echo 'spawn-protection=0' > server.properties
 # test
 EXPOSE 25565
 CMD ["./start.sh"]
+
+

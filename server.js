@@ -2,9 +2,23 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const archiver = require('archiver');
+const multer = require('multer');
+const unzipper = require('unzipper');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Define the storage for multer to place the zip file in /WorldBackup
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/WorldBackup');  // Place the uploaded file in /WorldBackup
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);  // Save the file with its original name
+  }
+});
+
+const upload = multer({ storage: storage });
 
 // Endpoint to download /WorldBackup volume contents
 app.get('/download-backup', (req, res) => {

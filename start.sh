@@ -107,7 +107,7 @@ add_operator() {
 }
 add_operator
 set_world_folder() {
-    WORLD_PATH="/WorldBackup/your_world_folder"
+    WORLD_PATH="/BackupWorld/your_world_folder"
 
     if [ -d "$WORLD_PATH" ]; then
         if [ ! -f server.properties ]; then
